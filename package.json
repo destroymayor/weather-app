@@ -8,9 +8,14 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@headlessui/react": "^1.5.0",
+    "@heroicons/react": "^1.0.5",
+    "clsx": "^1.1.1",
+    "dayjs": "^1.10.7",
     "next": "12.0.10",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "swr": "^1.2.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",

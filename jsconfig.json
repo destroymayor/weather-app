@@ -1,14 +1,15 @@
 {
-    "compilerOptions": {
-      "baseUrl": ".",
-      "paths": {
-        "@/components/*": ["src/components/*"],
-        "@/context/*": ["src/context/*"],
-        "@/hooks/*": ["src/hooks/*"],
-        "@/styles/*": ["src/styles/*"],
-        "@/utils/*": ["src/utils/*"],
-        "@/public/*": ["public/*"]
-      }
-    },
-    "exclude": ["node_modules"]
-  }
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["src/components/*"],
+      "@/context/*": ["src/context/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/styles/*": ["src/styles/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/public/*": ["public/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
