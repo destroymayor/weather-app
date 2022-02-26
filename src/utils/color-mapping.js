@@ -31,7 +31,7 @@ const colorMapping = {
   },
   '04d': {
     containerBgColor: 'from-blue-100 via-blue-300 to-blue-400',
-    mainBgColor: 'from-blue-300 via-blue-400 to-blue-600',
+    mainBgColor: 'from-blue-400 via-blue-500 to-blue-600',
     color: 'text-gray-200',
   },
   '04n': {

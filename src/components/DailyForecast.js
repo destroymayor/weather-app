@@ -18,14 +18,14 @@ export default function DailyForecast(props) {
             return (
               <li
                 key={`${index}`}
-                className="flex flex-col items-center gap-4 rounded-md bg-slate-300 bg-opacity-60 p-4"
+                className="flex min-w-[100px] flex-col items-center gap-4 rounded-md bg-slate-400 bg-opacity-50 p-4"
               >
                 <div className="flex-[0.5]">
                   {dayjs(new Date(dayjs().add(index, 'day'))).format('MM/DD')}
                 </div>
                 <div className="flex flex-[0.5] items-center justify-center gap-2">
                   {iconMapping[item?.weather?.[0]?.icon]}
-                  <div className="text-sm text-blue-500">{rainRate}</div>
+                  {rainRate && <div className="text-sm font-semibold">{rainRate}</div>}
                 </div>
                 <div className="text-">{Math.round(item?.temp?.day)}°</div>
               </li>

@@ -22,7 +22,11 @@ const useWeather = (props) => {
 
   const { data } = useSWR(lat && lon ? url : null, fetcher);
 
-  return { data };
+  const results = {
+    ...data,
+    hourly: data?.hourly?.slice(0, 24),
+  };
+  return { data: results };
 };
 
 export default useWeather;

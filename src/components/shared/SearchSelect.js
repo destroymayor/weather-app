@@ -4,12 +4,14 @@ import useOnClickOutside from '@/hooks/use-on-click-outside';
 
 import clsx from 'clsx';
 
+import { LoadingIcon } from '@/components/shared/Icons';
 import { Transition } from '@headlessui/react';
 import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/solid';
 
 const SearchSelect = (props) => {
   const {
     label,
+    loading,
     disabled,
     placeholder,
     options = [],
@@ -46,10 +48,8 @@ const SearchSelect = (props) => {
     <div ref={ref} className="relative">
       <div
         className={clsx(
-          `${isOpen ? 'border-primary' : 'border-gray-300'}`,
-          `${disabled ? 'border-gray-200' : 'hover:border-primary focus:border-primary'}`,
           'relative flex items-center justify-between',
-          'rounded-lg border',
+          'rounded-lg border-0',
           'group focus:outline-none'
         )}
         onClick={() => (disabled ? {} : handleToggle())}
@@ -70,20 +70,22 @@ const SearchSelect = (props) => {
         <div className="absolute right-2 flex items-center justify-center text-gray-500">
           <div
             className={clsx(
-              `${
-                disabled
-                  ? 'cursor-not-allowed text-gray-300'
-                  : 'group-hover:text-primary cursor-pointer text-gray-600'
-              }`,
+              `${disabled ? 'cursor-not-allowed text-gray-300' : 'cursor-pointer text-gray-600'}`,
               'p-1',
               'rounded-full',
               'transition duration-150 ease-in-out '
             )}
           >
-            {isOpen ? (
-              <ChevronUpIcon className="h-5 w-5" />
+            {value !== '' && loading ? (
+              <LoadingIcon className="h-5 w-5" />
             ) : (
-              <ChevronDownIcon className="h-5 w-5" />
+              <>
+                {isOpen ? (
+                  <ChevronUpIcon className="h-5 w-5" />
+                ) : (
+                  <ChevronDownIcon className="h-5 w-5" />
+                )}
+              </>
             )}
           </div>
         </div>
@@ -91,7 +93,7 @@ const SearchSelect = (props) => {
 
       <Transition
         as={Fragment}
-        show={isOpen}
+        show={isOpen && value !== ''}
         enter="transition ease-out duration-100"
         enterFrom="transform opacity-0 scale-95"
         enterTo="transform opacity-100 scale-100"
@@ -107,7 +109,15 @@ const SearchSelect = (props) => {
             'overflow-auto focus:outline-none'
           )}
         >
-          {options.length === 0 && <li className="py-2 text-center text-gray-500">查無資料</li>}
+          {value !== '' && loading && (
+            <li className="flex justify-center py-2 text-center text-gray-500">
+              <LoadingIcon className="h-7 w-7" />
+            </li>
+          )}
+
+          {!loading && options.length === 0 && (
+            <li className="py-2 text-center text-gray-500">查無資料</li>
+          )}
 
           {options.map((option, index) => (
             <li
@@ -115,7 +125,7 @@ const SearchSelect = (props) => {
                 'relative flex flex-wrap items-center',
                 'ml-2 mr-4 p-2',
                 'truncate rounded-lg text-sm text-gray-600',
-                'cursor-pointer hover:text-gray-800'
+                'cursor-pointer hover:bg-gray-500 hover:text-gray-200'
               )}
               key={`${index.toString()}`}
               onClick={() => handleSelect(option)}

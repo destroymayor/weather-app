@@ -49,6 +49,7 @@ export default function Home() {
         <div className="px-3 pt-3">
           <SearchSelect
             options={geoData}
+            loading={!geoData}
             value={searchLocation}
             onSearch={(value) => setSearchLocation(value)}
             onSelect={(value) =>
